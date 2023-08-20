@@ -1,16 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Clientes;
 
-
-Route::Resource('/apishalom/personas','PersonaController');
-Route::Resource('/apishalom/tallajes','TallajeController');
-Route::Resource('/apishalom/areas','AreaController');
-Route::Resource('/apishalom/cargos','CargoController');
-Route::Resource('/apishalom/contratos','ContratoController');
-Route::get('/apishalom/tallas',[App\Http\Controllers\ServiciosController::class,'listarTallas']);
+// Route::Resource('/apishalom/personas','PersonaController');
+// Route::Resource('/apishalom/tallajes','TallajeController');
+// Route::Resource('/apishalom/areas','AreaController');
+// Route::Resource('/apishalom/cargos','CargoController');
+// Route::Resource('/apishalom/contratos','ContratoController');
+// Route::get('/apishalom/tallas',[App\Http\Controllers\ServiciosController::class,'listarTallas']);
 // Route::get('/apishalom/areas/{id}',[App\Http\Controllers\ServiciosController::class,'listarAreas']);
-
+Route::get('clientes',Clientes::class);
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,3 +19,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
