@@ -1,5 +1,5 @@
 <div wire:ignore.self class="modal modal-slide-in fade" id="modal1">
-                        <div class="modal-dialog sidebar-lg">
+                        <div class="modal-dialog sidebar">
                             <form class="add-new-record modal-content pt-0">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
                                 <div class="modal-header mb-1">

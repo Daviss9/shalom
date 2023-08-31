@@ -21,16 +21,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn btn-outline-primary waves-effect" type="button" data-bs-toggle="modal" data-bs-target="#modal1" aria-haspopup="true" aria-expanded="false"><i data-feather="plus"></i> Nuevo Registro</button>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div class="content-body">
-                
                 <section>
                     <div class="row">
                         <div class="col-12">
@@ -49,7 +41,7 @@
                                         Export
                                         </span>
                                     </button>  -->
-                                    <button class="dt-button btn btn-outline-primary waves-effect" tabindex="0"  type="button" data-bs-toggle="modal" data-bs-target="#modal1">
+                                    <button class="dt-button btn btn-outline-primary waves-effect" tabindex="0"  type="button" data-bs-toggle="modal" data-bs-target="#modal2">
                                         <span>
                                         <!-- <i data-feather="plus"></i> -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus me-50 font-small-4"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -61,63 +53,62 @@
                         </div>
                         <div class="card-body border-bottom p-1">
                            <div class="table-responsive">
-                           <table id="tabla" class="table table-hover">
+                           <table id="tabla" class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>Estado</th>
-                                            <th>Pedidos</th>
-                                            <th>Cliente</th>
-                                            <th>Contacto</th>
-                                            <th>Telefono</th>
-                                            <th>Email</th>
+                                            <th style="width: 200px;">Cliente</th>
+                                            <th>Proceso y Objeto</th>
+                                            <!-- <th>Tipo</th> -->
+                                            <th>Contrato</th>
+                                            <th>Fecha</th>
+                                            <th>O/C</th>
+                                            <th>Monto</th>
                                             <th>Accion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($clientes as $cli)
+                                        @foreach ($contratos as $con)
                                         <tr>
-                                            
                                             <td>
-                                                @if($cli->deleted_at == null)
+                                                @if($con->deleted_at == null)
                                                 <span class="badge rounded-pill badge-light-success">Activo</span>
                                                 @else
                                                 <span class="badge rounded-pill badge-light-danger">Inactivo</span>
                                                 @endif
-                                            </td>
-                                            <td class="text-center">
-                                                <!-- {{$cli->contratos->count()}} -->
-                                                    <div class="avatar bg-primary">
-                                                        <div class="avatar-content">{{$cli->contratos->count()}}</div>
-                                                    </div>
                                             </td> 
+                                            <td> <h6 class="mb-0 text-left">{{$con->nCliente}}</h6></td>
                                             <td>
                                                 <div class="d-flex justify-content-start align-items-center mb-1">
                                                     <!-- <div class="avatar me-1">
                                                     <img src="../../../app-assets/images/avatars/12-small.png" alt="avatar img" height="40" width="40">
                                                     </div> -->
                                                 <div class="profile-user-info">
-                                                <h6 class="mb-0">{{$cli->cliente}}</h6> 
-                                                <small class="text-muted">{{$cli->ruc}}</small>
+                                                <h6 class="mb-0">{{$con->nombreProceso}}</h6> 
+                                                <small class="text-muted">{{$con->objetoProceso}}</small> <br>
+                                                <span class="badge bg-primary">{{$con->tipoProceso}}</span>
                                             </div>
                                             <!-- <div class="profile-star ms-auto">
                                                 <i data-feather='bell'></i>
                                             </div> -->
                                              </div>
                                             </td>
-                                            <td>{{$cli->personaContacto}}</td>
-                                            <td>{{$cli->telefonoContacto}}</td>
-                                            <td>{{$cli->emailContacto}}</td>
+                                            <!-- <td>{{$con->tipoProceso}}</td> -->
+                                            <td>{{$con->nroContrato}}</td>
+                                            <td>{{$con->fechaContrato}}</td>
+                                            <td>{{$con->ordenCompra}}</td>
+                                            <td>{{number_format($con->montoTotal,2,".",",")}}</td>
                                             <td>
-                                                @if($cli->deleted_at == null)
-                                                    <a href="javascript:;" onclick="Desactivar('{{$cli->id}}')" class="item-edit">
+                                                @if($con->deleted_at == null)
+                                                    <a href="javascript:;" onclick="Desactivar('{{$con->id}}')" class="item-edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-slash text-danger"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
                                                     </a>
                                                     &nbsp;
-                                                    <a href="javascript:;" wire:click="Editar({{$cli->id}})" class="item-edit">
+                                                    <a href="javascript:;" wire:click="Editar({{$con->id}})" class="item-edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                                     </a>
                                                 @else
-                                                    <a href="javascript:;" onclick="Activar('{{$cli->id}}')" class="item-edit">
+                                                    <a href="javascript:;" onclick="Activar('{{$con->id}}')" class="item-edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check text-success"><polyline points="20 6 9 17 4 12"></polyline></svg>
                                                     </a>
                                                     &nbsp;
@@ -133,97 +124,33 @@
                                 
                          </div>
                          <div class="pagination mt-3">
-                                {{$clientes->links()}}
+                                {{$contratos->links()}}
                                 </div>    
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- Basic table -->
-                <section id="basic-datatable">
-                    <!-- <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <table id="tabla" name="tabla" class="datatables-basic table">
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>RUC</th>
-                                            <th>Contacto</th>
-                                            <th>Telefono</th>
-                                            <th>Email</th>
-                                            <th>Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>  -->
-                    <!-- Modal to add new record -->
-                    <!-- <div class="modal modal-slide-in fade" id="modals-slide-in" name="modal1">
-                        <div class="modal-dialog sidebar-sm">
-                            <form class="add-new-record modal-content pt-0">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                                <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                                </div>
-                                <div class="modal-body flex-grow-1">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-post">Post</label>
-                                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                                        <small class="form-text"> You can use letters, numbers & periods </small>
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                                        <input type="text" class="form-control dt-date" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                                        <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000" />
-                                    </div>
-                                    <button type="button" class="btn btn-primary data-submit me-1">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
-                </section>
-                <!--/ Basic table -->
-
-                @include('livewire.clientes.form')
+                @include('livewire.contratos.form')
 
             </div>
         </div>
     </div>
-   <!-- <style>
-     .create-new{
-        display: none;
-     }
-   </style> -->
 </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded',function(){
-        window.livewire.on('cliente-agregar',msg=>{
-            $('#modal1').modal('hide');
+        window.livewire.on('contrato-agregar',msg=>{
+            $('#modal2').modal('hide');
             Swal.fire(
             'Guardado!',
-            'Cliente registrado',
+            'Contrato registrado',
             'success'
             )
         })
-        window.livewire.on('cliente-actualizar',msg=>{
-            $('#modal1').modal('hide');
+        window.livewire.on('contrato-actualizar',msg=>{
+            $('#modal2').modal('hide');
             Swal.fire(
             'Actualizado!',
             'Cliente actualizado',
@@ -232,13 +159,13 @@
         })
         
         window.livewire.on('hide-modal',msg=>{
-            $('#modal1').modal('hide');
+            $('#modal2').modal('hide');
         })
         window.livewire.on('show-modal',msg=>{
-            $('#modal1').modal('show');
+            $('#modal2').modal('show');
         })
         window.livewire.on('hidden.bs.modal',msg=>{
-            $('#modal1').modal('hide');
+            $('#modal2').modal('hide');
             $('.er').css('display','none');
         })
     });

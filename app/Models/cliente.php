@@ -11,4 +11,9 @@ class cliente extends Model
     use HasFactory,SoftDeletes;
 
     protected $fillable = ['cliente','ruc','direccion','email','personaContacto','cargoContacto','telefonoContacto','emailContacto'];
+
+    public function contratos()
+    {
+        return $this->hasMany(contrato::class);
+    }
 }

@@ -137,7 +137,7 @@ class Clientes extends Component
         ]);
         $cliente->save();
         $this->resetUI();
-        $this->emit('cliente-actualizar','Categoria Actualizada');
+        $this->emit('cliente-actualizar','Cliente Actualizado');
 
     }
 
