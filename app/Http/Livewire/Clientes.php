@@ -16,7 +16,7 @@ class Clientes extends Component
 
     public $search,$image,$selected_id,$pageTitle,$componentName,$cliente,$ruc,$direccion,$email,$personaContacto,
     $cargoContacto,$telefonoContacto,$emailContacto, $created_at, $updated_at, $deleted_at;
-    private $pagination = 10;
+    private $pagination = 5;
 
 
     public function mount()
@@ -144,6 +144,9 @@ class Clientes extends Component
     public function resetUI()
     {
         $this->reset(['cliente','ruc','direccion','email','personaContacto','cargoContacto','telefonoContacto','emailContacto','search','selected_id']);
+        //Resetea los errores de validacion
+        $this->resetErrorBag();
+
         
     }
 
@@ -151,7 +154,6 @@ class Clientes extends Component
 
     public function desactivar($id)
     {
-        // dd($id);
         cliente::find($id)->delete();
     }
     public function activar($id)

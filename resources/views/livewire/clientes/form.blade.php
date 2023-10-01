@@ -2,29 +2,29 @@
                                 
                                     <div class="mb-1">
                                         <label class="form-label" for="basic-icon-default-fullname">Cliente</label>
-                                        <input type="text" wire:model.lazy="cliente" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="Razon Social" />
+                                        <input type="text" wire:model.lazy="cliente" class="form-control @error('cliente') is-invalid @enderror" id="basic-icon-default-fullname" placeholder="Razon Social" />
                                         @error('cliente') <span class="text-danger er">{{ $message }}</span> @enderror    
                                     </div>
                                     
                                     <div class="mb-1">
                                         <label class="form-label">RUC</label>
-                                        <input type="number" wire:model.lazy="ruc"  class="form-control dt-post" placeholder="N° de RUC" />
+                                        <input type="number" wire:model.lazy="ruc"  class="form-control @error('ruc') is-invalid @enderror" placeholder="N° de RUC" />
                                         @error('ruc') <span class="text-danger er">{{ $message }}</span> @enderror 
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label">Direccion</label>
-                                        <input type="text" wire:model.lazy="direccion"  class="form-control dt-post" placeholder="Direccion" />
+                                        <input type="text" wire:model.lazy="direccion"  class="form-control @error('direccion') is-invalid @enderror" placeholder="Direccion" />
                                         @error('direccion') <span class="text-danger er">{{ $message }}</span> @enderror 
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" wire:model.lazy="email" id="basic-icon-default-email" class="form-control dt-email" placeholder="ejemplo@jemplo.com" aria-label="ejemplo@jemplo.com" />
+                                        <input type="text" wire:model.lazy="email" id="basic-icon-default-email" class="form-control @error('email') is-invalid @enderror" placeholder="ejemplo@jemplo.com" aria-label="ejemplo@jemplo.com" />
                                         <!-- <small class="form-text"> formato: ejemplo@dominio.com </small> -->
                                         @error('email') <span class="text-danger er">{{ $message }}</span> @enderror 
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label">Persona Contacto</label>
-                                        <input type="text" wire:model.lazy="personaContacto"  class="form-control dt-post" placeholder="Personal de Contacto" />
+                                        <input type="text" wire:model.lazy="personaContacto"  class="form-control @error('personaContacto') is-invalid @enderror" placeholder="Personal de Contacto" />
                                         @error('personaContacto') <span class="text-danger er">{{ $message }}</span> @enderror 
                                     </div>
                                     <div class="mb-1">

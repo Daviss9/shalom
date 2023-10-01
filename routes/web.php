@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Clientes;
 use App\Http\Livewire\Contratos;
 use App\Http\Livewire\Tallajes;
+use App\Http\Livewire\TallajeDetalle;
 
 // Route::Resource('/apishalom/personas','PersonaController');
 // Route::Resource('/apishalom/tallajes','TallajeController');
@@ -15,6 +16,7 @@ use App\Http\Livewire\Tallajes;
 Route::get('clientes',Clientes::class);
 Route::get('contratos',Contratos::class);
 Route::get('tallajes',Tallajes::class);
+Route::get('tallajeDetalle/{contratoId}',TallajeDetalle::class);
 
 Route::get('/', function () {
     return view('welcome');

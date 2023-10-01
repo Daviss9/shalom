@@ -181,6 +181,8 @@ class Contratos extends Component
         $this->cliente_id = 0;
         $this->tipoProceso= 0;
         $this->moneda = 0;
+        //Resetea los errores de validacion
+        $this->resetErrorBag();
     }
 
     protected $listeners = ['desactivarRegistro' => 'desactivar','activarRegistro' => 'activar'];
