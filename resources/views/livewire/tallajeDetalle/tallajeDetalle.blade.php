@@ -261,3 +261,16 @@
     </div>
 </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+        window.livewire.on('persona-agregar',msg=>{
+            $('#modal1').modal('hide');
+            Swal.fire(
+            'Guardado!',
+            'Persona registrado',
+            'success'
+            )
+        })
+    })
+</script>
